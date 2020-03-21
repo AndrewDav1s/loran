@@ -15,8 +15,8 @@ import (
 	"github.com/InjectiveLabs/loran/modules/peggy/types"
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/committer"
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/provider"
-	"github.com/InjectiveLabs/loran/orchestrator/ethereum/wrappers"
 	"github.com/InjectiveLabs/loran/orchestrator/metrics"
+	wrappers "github.com/InjectiveLabs/loran/solidity/wrappers/Peggy.sol"
 )
 
 type PeggyContract interface {
