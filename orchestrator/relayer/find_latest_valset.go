@@ -10,7 +10,8 @@ import (
 
 	"github.com/InjectiveLabs/loran/modules/peggy/types"
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/util"
-	"github.com/InjectiveLabs/loran/orchestrator/ethereum/wrappers"
+	
+	wrappers "github.com/InjectiveLabs/loran/solidity/wrappers/Peggy.sol"
 )
 
 const defaultBlocksToSearch = 2000

@@ -8,7 +8,7 @@ import (
 	"github.com/pkg/errors"
 	log "github.com/xlab/suplog"
 
-	"github.com/InjectiveLabs/loran/orchestrator/ethereum/wrappers"
+	wrappers "github.com/InjectiveLabs/loran/solidity/wrappers/Peggy.sol"
 )
 
 const defaultBlocksToSearch = 2000
