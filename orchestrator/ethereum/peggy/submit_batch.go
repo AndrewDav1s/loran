@@ -32,7 +32,6 @@ func (s *peggyContract) SendTransactionBatch(
 	amounts, destinations, fees := getBatchCheckpointValues(batch)
 	currentValsetNonce := new(big.Int).SetUint64(currentValset.Nonce)
 	batchNonce := new(big.Int).SetUint64(batch.BatchNonce)
-	batchTimeout := new(big.Int).SetUint64(batch.BatchTimeout)
 
 	// Solidity function signature
 	// function submitBatch(
@@ -63,7 +62,6 @@ func (s *peggyContract) SendTransactionBatch(
 		fees,
 		batchNonce,
 		common.HexToAddress(batch.TokenContract),
-		batchTimeout,
 	)
 	if err != nil {
 		log.WithError(err).Errorln("ABI Pack (Peggy submitBatch) method")

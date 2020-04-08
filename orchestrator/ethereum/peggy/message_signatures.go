@@ -94,13 +94,12 @@ func EncodeTxBatchConfirm(peggyID common.Hash, batch *types.OutgoingTxBatch) com
 		txFees,
 		big.NewInt(int64(batch.BatchNonce)),
 		common.HexToAddress(batch.TokenContract),
-		big.NewInt(int64(batch.BatchTimeout)),
 	)
 
 	// this should never happen outside of test since any case that could crash on encoding
 	// should be filtered above.
 	if err != nil {
-		log.WithError(err).Errorln("Error packing transactionBatch!")
+		log.WithError(err).Errorln("Error packing checkpoint!")
 		return common.Hash{}
 
 	}

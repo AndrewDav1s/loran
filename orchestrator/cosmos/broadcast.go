@@ -93,6 +93,7 @@ func (s *peggyBroadcastClient) AccFromAddress() sdk.AccAddress {
 	return s.broadcastClient.FromAddress()
 }
 
+
 type peggyBroadcastClient struct {
 	daemonQueryClient types.QueryClient
 	broadcastClient   client.CosmosClient
@@ -171,7 +172,7 @@ func (s *peggyBroadcastClient) SendValsetConfirm(
 	// chain store and submit them to Ethereum to update the validator set
 	// -------------
 	msg := &types.MsgValsetConfirm{
-		Orchestrator: s.AccFromAddress().String(),
+		Orchestrator: s.ValFromAddress().String(),
 		EthAddress:   ethFrom.Hex(),
 		Nonce:        valset.Nonce,
 		Signature:    ethcmn.Bytes2Hex(signature),
@@ -212,7 +213,7 @@ func (s *peggyBroadcastClient) SendBatchConfirm(
 	// as well as an Ethereum signature over this batch by the validator
 	// -------------
 	msg := &types.MsgConfirmBatch{
-		Orchestrator:  s.AccFromAddress().String(),
+		Orchestrator:  s.ValFromAddress().String(),
 		Nonce:         batch.BatchNonce,
 		Signature:     ethcmn.Bytes2Hex(signature),
 		EthSigner:     ethFrom.Hex(),
@@ -242,7 +243,7 @@ func (s *peggyBroadcastClient) sendDepositClaims(
 		TokenContract:  deposit.TokenContract.Hex(),
 		Amount:         sdk.NewIntFromBigInt(deposit.Amount),
 		EthereumSender: deposit.Sender.Hex(),
-		CosmosReceiver: sdk.AccAddress(deposit.Destination[12:32]).String(),
+		CosmosReceiver: sdk.AccAddress(deposit.Destination[:]).String(),
 		Orchestrator:   s.broadcastClient.FromAddress().String(),
 	}
 
@@ -265,7 +266,7 @@ func (s *peggyBroadcastClient) sendWithdrawClaims(
 		EventNonce:    withdraw.EventNonce.Uint64(),
 		BatchNonce:    withdraw.BatchNonce.Uint64(),
 		TokenContract: withdraw.Token.Hex(),
-		Orchestrator:  s.AccFromAddress().String(),
+		Orchestrator:  s.ValFromAddress().String(),
 	}
 	if err := s.broadcastClient.QueueBroadcastMsg(msg); err != nil {
 		metrics.ReportFuncError(s.svcTags)
@@ -347,7 +348,7 @@ func (s *peggyBroadcastClient) SendToEth(
 	// actually send this message in the first place. So a successful send has
 	// two layers of fees for the user
 	msg := &types.MsgSendToEth{
-		Sender:    s.AccFromAddress().String(),
+		Sender:    s.ValFromAddress().String(),
 		EthDest:   destination.Hex(),
 		Amount:    amount,
 		BridgeFee: fee, // TODO: use exactly that fee for transaction
@@ -380,7 +381,7 @@ func (s *peggyBroadcastClient) SendRequestBatch(
 	// -------------
 	msg := &types.MsgRequestBatch{
 		Denom:        denom,
-		Orchestrator: s.AccFromAddress().String(),
+		Orchestrator: s.ValFromAddress().String(),
 	}
 	if err := s.broadcastClient.QueueBroadcastMsg(msg); err != nil {
 		metrics.ReportFuncError(s.svcTags)
