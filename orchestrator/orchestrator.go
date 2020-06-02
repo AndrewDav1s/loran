@@ -11,7 +11,6 @@ import (
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/peggy"
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/provider"
 	"github.com/InjectiveLabs/loran/orchestrator/metrics"
-	"github.com/InjectiveLabs/loran/orchestrator/relayer"
 )
 
 type PeggyOrchestrator interface {
@@ -38,8 +37,6 @@ type peggyOrchestrator struct {
 	ethSignerFn          keystore.SignerFn
 	ethPersonalSignFn    keystore.PersonalSignFn
 	erc20ContractMapping map[ethcmn.Address]string
-	relayer              relayer.PeggyRelayer
-	minBatchFeeUSD       float64
 }
 
 func NewPeggyOrchestrator(
@@ -51,8 +48,6 @@ func NewPeggyOrchestrator(
 	ethSignerFn keystore.SignerFn,
 	ethPersonalSignFn keystore.PersonalSignFn,
 	erc20ContractMapping map[ethcmn.Address]string,
-	relayer relayer.PeggyRelayer,
-	minBatchFeeUSD float64,
 ) PeggyOrchestrator {
 	return &peggyOrchestrator{
 		tmClient:             tmClient,
@@ -64,8 +59,7 @@ func NewPeggyOrchestrator(
 		ethSignerFn:          ethSignerFn,
 		ethPersonalSignFn:    ethPersonalSignFn,
 		erc20ContractMapping: erc20ContractMapping,
-		relayer:              relayer,
-		minBatchFeeUSD:       minBatchFeeUSD,
+
 		svcTags: metrics.Tags{
 			"svc": "peggy_orchestrator",
 		},

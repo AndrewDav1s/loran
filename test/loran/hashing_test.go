@@ -152,7 +152,7 @@ var _ = Describe("Contract Tests", func() {
 	})
 })
 
-var valsetConfirmABI, _ = abi.JSON(strings.NewReader(peggy.ValsetCheckpointABIJSON))
+var valsetConfirmABI, _ = abi.JSON(strings.NewReader(peggy.ValsetConfirmABIJSON))
 
 func makeValsetCheckpoint(
 	peggyID common.Hash,

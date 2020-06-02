@@ -10,7 +10,6 @@ import (
 
 	"github.com/InjectiveLabs/loran/modules/peggy/types"
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/util"
-	sdk "github.com/cosmos/cosmos-sdk/types"
 
 	wrappers "github.com/InjectiveLabs/loran/solidity/wrappers/Peggy.sol"
 )
@@ -87,10 +86,8 @@ func (s *peggyRelayer) FindLatestValset(ctx context.Context) (*types.Valset, err
 		if len(valsetUpdatedEvents) > 0 {
 			event := valsetUpdatedEvents[0]
 			valset := &types.Valset{
-				Nonce:        event.NewValsetNonce.Uint64(),
-				Members:      make([]*types.BridgeValidator, 0, len(event.Powers)),
-				RewardAmount: sdk.NewIntFromBigInt(event.NewValsetNonce),
-				RewardToken:  event.RewardToken.Hex(),
+				Nonce:   event.NewValsetNonce.Uint64(),
+				Members: make([]*types.BridgeValidator, 0, len(event.Powers)),
 			}
 
 			for idx, p := range event.Powers {

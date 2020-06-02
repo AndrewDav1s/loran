@@ -21,7 +21,6 @@ import (
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/committer"
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/peggy"
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/provider"
-	"github.com/InjectiveLabs/loran/orchestrator/relayer"
 )
 
 // startOrchestrator action runs an infinite loop,
@@ -68,13 +67,6 @@ func orchestratorCmd(cmd *cli.Cmd) {
 		statsdStuckDur *string
 		statsdMocking  *string
 		statsdDisabled *string
-
-		// Relayer config
-		relayValsets *bool
-		relayBatches *bool
-
-		// Batch requester config
-		minBatchFeeUSD *float64
 	)
 
 	initCosmosOptions(
@@ -119,17 +111,6 @@ func orchestratorCmd(cmd *cli.Cmd) {
 		&statsdStuckDur,
 		&statsdMocking,
 		&statsdDisabled,
-	)
-
-	initRelayerOptions(
-		cmd,
-		&relayValsets,
-		&relayBatches,
-	)
-
-	initBatchRequesterOptions(
-		cmd,
-		&minBatchFeeUSD,
 	)
 
 	erc20ContractMapping = cmd.StringsArg("ERC20_MAPPING", []string{}, "Mapping between contract_address:cosmos_denom for ERC20 tokens")
@@ -232,7 +213,6 @@ func orchestratorCmd(cmd *cli.Cmd) {
 
 		cosmosQueryClient := cosmos.NewPeggyQueryClient(peggyQuerier)
 
-		relayer := relayer.NewPeggyRelayer(cosmosQueryClient, peggyContract, *relayValsets, *relayBatches)
 		svc := orchestrator.NewPeggyOrchestrator(
 			cosmosQueryClient,
 			peggyBroadcaster,
@@ -242,8 +222,6 @@ func orchestratorCmd(cmd *cli.Cmd) {
 			signerFn,
 			personalSignFn,
 			parseERC20ContractMapping(*erc20ContractMapping),
-			relayer,
-			*minBatchFeeUSD,
 		)
 
 		ctx, cancelFn := context.WithCancel(context.Background())
