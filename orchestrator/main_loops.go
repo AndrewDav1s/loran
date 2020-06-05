@@ -2,6 +2,7 @@ package orchestrator
 
 import (
 	"context"
+	"errors"
 	"math"
 	"math/big"
 	"time"
@@ -11,11 +12,10 @@ import (
 	log "github.com/xlab/suplog"
 
 	"github.com/InjectiveLabs/loran/modules/peggy/types"
+	"github.com/InjectiveLabs/loran/orchestrator/coingecko"
 	"github.com/InjectiveLabs/loran/orchestrator/cosmos"
 	"github.com/InjectiveLabs/loran/orchestrator/loops"
-	"github.com/InjectiveLabs/loran/orchestrator/relayer"
 
-	cosmtypes "github.com/cosmos/cosmos-sdk/types"
 	ethcmn "github.com/ethereum/go-ethereum/common"
 )
 
@@ -261,7 +261,6 @@ func (s *peggyOrchestrator) ValsetRequesterLoop(ctx context.Context) (err error)
 
 func (s *peggyOrchestrator) BatchRequesterLoop(ctx context.Context) (err error) {
 	logger := log.WithField("loop", "BatchRequesterLoop")
-
 	return loops.RunLoop(ctx, defaultLoopDur, func() error {
 		// get All the denominations
 		// check if threshold is met
@@ -300,8 +299,8 @@ func (s *peggyOrchestrator) BatchRequesterLoop(ctx context.Context) (err error) 
 							denom = types.PeggyDenom(tokenAddr.Hex())
 						}
 
-						// send batch request only if fee is > 0. Add a threshold amount later through flags
-						if unbatchedToken.TotalFees.GT(cosmtypes.NewInt(0)) {
+						// send batch request only if fee threshold is met.
+						if coingecko.CheckFeeThreshod(tokenAddr, unbatchedToken.TotalFees, s.minBatchFeeUSD) {
 							logger.WithFields(log.Fields{"tokenContract": tokenAddr, "denom": denom}).Infoln("sending batch request")
 							_ = s.peggyBroadcastClient.SendRequestBatch(ctx, denom)
 						}
@@ -321,8 +320,11 @@ func (s *peggyOrchestrator) BatchRequesterLoop(ctx context.Context) (err error) 
 }
 
 func (s *peggyOrchestrator) RelayerMainLoop(ctx context.Context) (err error) {
-	r := relayer.NewPeggyRelayer(s.cosmosQueryClient, s.peggyContract)
-	return r.Start(ctx)
+	if s.relayer != nil {
+		return s.relayer.Start(ctx)
+	} else {
+		return errors.New("relayer is nil")
+	}
 }
 
 // valPowerDiff returns the difference in power between two bridge validator sets
