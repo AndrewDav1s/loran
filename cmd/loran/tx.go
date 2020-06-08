@@ -9,9 +9,9 @@ import (
 	"github.com/xlab/closer"
 	log "github.com/xlab/suplog"
 
-	"github.com/InjectiveLabs/loran/modules/peggy/types"
+	"github.com/InjectiveLabs/sdk-go/chain/peggy/types"
 	"github.com/InjectiveLabs/loran/orchestrator/cosmos"
-	"github.com/InjectiveLabs/loran/orchestrator/cosmos/client"
+	"github.com/InjectiveLabs/sdk-go/chain/client"
 )
 
 // txCmdSubset contains actions that can sign and send messages to Cosmos module

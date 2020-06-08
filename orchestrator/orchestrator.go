@@ -5,8 +5,9 @@ import (
 
 	ethcmn "github.com/ethereum/go-ethereum/common"
 
-	sidechain "github.com/InjectiveLabs/loran/orchestrator/cosmos"
 	"github.com/InjectiveLabs/loran/orchestrator/cosmos/tmclient"
+
+	sidechain "github.com/InjectiveLabs/loran/orchestrator/cosmos"
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/keystore"
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/peggy"
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/provider"

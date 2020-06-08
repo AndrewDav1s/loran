@@ -13,10 +13,11 @@ import (
 	"github.com/xlab/closer"
 	log "github.com/xlab/suplog"
 
-	"github.com/InjectiveLabs/loran/modules/peggy/types"
+	"github.com/InjectiveLabs/sdk-go/chain/client"
+	"github.com/InjectiveLabs/sdk-go/chain/peggy/types"
+
 	"github.com/InjectiveLabs/loran/orchestrator"
 	"github.com/InjectiveLabs/loran/orchestrator/cosmos"
-	"github.com/InjectiveLabs/loran/orchestrator/cosmos/client"
 	"github.com/InjectiveLabs/loran/orchestrator/cosmos/tmclient"
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/committer"
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/peggy"

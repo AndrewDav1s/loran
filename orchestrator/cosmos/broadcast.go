@@ -8,8 +8,9 @@ import (
 	"github.com/pkg/errors"
 	log "github.com/xlab/suplog"
 
-	"github.com/InjectiveLabs/loran/modules/peggy/types"
-	"github.com/InjectiveLabs/loran/orchestrator/cosmos/client"
+	"github.com/InjectiveLabs/sdk-go/chain/client"
+	"github.com/InjectiveLabs/sdk-go/chain/peggy/types"
+
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/keystore"
 	"github.com/InjectiveLabs/loran/orchestrator/ethereum/peggy"
 	"github.com/InjectiveLabs/loran/orchestrator/metrics"
