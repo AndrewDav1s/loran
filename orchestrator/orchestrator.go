@@ -5,6 +5,7 @@ import (
 
 	ethcmn "github.com/ethereum/go-ethereum/common"
 
+	"github.com/InjectiveLabs/loran/orchestrator/coingecko"
 	"github.com/InjectiveLabs/loran/orchestrator/cosmos/tmclient"
 
 	sidechain "github.com/InjectiveLabs/loran/orchestrator/cosmos"
@@ -41,6 +42,7 @@ type peggyOrchestrator struct {
 	erc20ContractMapping map[ethcmn.Address]string
 	relayer              relayer.PeggyRelayer
 	minBatchFeeUSD       float64
+	priceFeeder          *coingecko.CoingeckoPriceFeed
 }
 
 func NewPeggyOrchestrator(
@@ -54,6 +56,8 @@ func NewPeggyOrchestrator(
 	erc20ContractMapping map[ethcmn.Address]string,
 	relayer relayer.PeggyRelayer,
 	minBatchFeeUSD float64,
+	priceFeeder *coingecko.CoingeckoPriceFeed,
+
 ) PeggyOrchestrator {
 	return &peggyOrchestrator{
 		tmClient:             tmClient,
@@ -67,6 +71,7 @@ func NewPeggyOrchestrator(
 		erc20ContractMapping: erc20ContractMapping,
 		relayer:              relayer,
 		minBatchFeeUSD:       minBatchFeeUSD,
+		priceFeeder:          priceFeeder,
 		svcTags: metrics.Tags{
 			"svc": "peggy_orchestrator",
 		},
