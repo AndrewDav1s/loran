@@ -3,13 +3,14 @@
 pragma solidity ^0.8.0;
 
 import "./TransparentUpgradeableProxy.sol";
-import "./OwnableWithExpiry.sol";
+import "./Ownable.sol";
 
 /**
  * @dev This is an auxiliary contract meant to be assigned as the admin of a {TransparentUpgradeableProxy}. For an
  * explanation of why you would want to use this see the documentation for {TransparentUpgradeableProxy}.
  */
-contract ProxyAdmin is OwnableWithExpiry {
+contract ProxyAdmin is Ownable {
+
     /**
      * @dev Returns the current implementation of `proxy`.
      *
