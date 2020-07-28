@@ -14,8 +14,8 @@ import (
 
 	"github.com/InjectiveLabs/sdk-go/chain/peggy/types"
 
-	"github.com/InjectiveLabs/loran/orchestrator/cosmos"
-	"github.com/InjectiveLabs/loran/orchestrator/loops"
+	"github.com/cicizeo/loran/orchestrator/cosmos"
+	"github.com/cicizeo/loran/orchestrator/loops"
 
 	cosmtypes "github.com/cosmos/cosmos-sdk/types"
 	ethcmn "github.com/ethereum/go-ethereum/common"

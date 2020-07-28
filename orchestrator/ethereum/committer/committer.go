@@ -9,7 +9,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/shopspring/decimal"
 
-	"github.com/InjectiveLabs/loran/orchestrator/ethereum/provider"
+	"github.com/cicizeo/loran/orchestrator/ethereum/provider"
 )
 
 // EVMCommitter defines an interface for submitting transactions

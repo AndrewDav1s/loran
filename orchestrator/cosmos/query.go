@@ -7,8 +7,8 @@ import (
 	ethcmn "github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
 
-	"github.com/InjectiveLabs/loran/orchestrator/metrics"
 	"github.com/InjectiveLabs/sdk-go/chain/peggy/types"
+	"github.com/cicizeo/loran/orchestrator/metrics"
 )
 
 type PeggyQueryClient interface {
@@ -38,7 +38,7 @@ func NewPeggyQueryClient(client types.QueryClient) PeggyQueryClient {
 
 type peggyQueryClient struct {
 	daemonQueryClient types.QueryClient
-	svcTags metrics.Tags
+	svcTags           metrics.Tags
 }
 
 var ErrNotFound = errors.New("not found")

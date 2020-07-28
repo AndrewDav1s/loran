@@ -15,8 +15,8 @@ import (
 	"github.com/InjectiveLabs/etherman/deployer"
 
 	"github.com/InjectiveLabs/etherman/sol"
-	"github.com/InjectiveLabs/loran/orchestrator/ethereum/peggy"
-	wrappers "github.com/InjectiveLabs/loran/solidity/wrappers/Peggy.sol"
+	"github.com/cicizeo/loran/orchestrator/ethereum/peggy"
+	wrappers "github.com/cicizeo/loran/solidity/wrappers/Peggy.sol"
 )
 
 var _ = Describe("Contract Tests", func() {

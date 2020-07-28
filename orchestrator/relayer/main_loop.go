@@ -7,7 +7,7 @@ import (
 	retry "github.com/avast/retry-go"
 	log "github.com/xlab/suplog"
 
-	"github.com/InjectiveLabs/loran/orchestrator/loops"
+	"github.com/cicizeo/loran/orchestrator/loops"
 )
 
 const defaultLoopDur = 5 * time.Minute

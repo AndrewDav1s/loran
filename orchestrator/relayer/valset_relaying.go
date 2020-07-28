@@ -6,8 +6,8 @@ import (
 	"github.com/pkg/errors"
 	log "github.com/xlab/suplog"
 
-	"github.com/InjectiveLabs/loran/orchestrator/metrics"
 	"github.com/InjectiveLabs/sdk-go/chain/peggy/types"
+	"github.com/cicizeo/loran/orchestrator/metrics"
 )
 
 // RelayValsets checks the last validator set on Ethereum, if it's lower than our latest validator

@@ -5,15 +5,15 @@ import (
 
 	ethcmn "github.com/ethereum/go-ethereum/common"
 
-	"github.com/InjectiveLabs/loran/orchestrator/coingecko"
-	"github.com/InjectiveLabs/loran/orchestrator/cosmos/tmclient"
+	"github.com/cicizeo/loran/orchestrator/coingecko"
+	"github.com/cicizeo/loran/orchestrator/cosmos/tmclient"
 
-	sidechain "github.com/InjectiveLabs/loran/orchestrator/cosmos"
-	"github.com/InjectiveLabs/loran/orchestrator/ethereum/keystore"
-	"github.com/InjectiveLabs/loran/orchestrator/ethereum/peggy"
-	"github.com/InjectiveLabs/loran/orchestrator/ethereum/provider"
-	"github.com/InjectiveLabs/loran/orchestrator/metrics"
-	"github.com/InjectiveLabs/loran/orchestrator/relayer"
+	sidechain "github.com/cicizeo/loran/orchestrator/cosmos"
+	"github.com/cicizeo/loran/orchestrator/ethereum/keystore"
+	"github.com/cicizeo/loran/orchestrator/ethereum/peggy"
+	"github.com/cicizeo/loran/orchestrator/ethereum/provider"
+	"github.com/cicizeo/loran/orchestrator/metrics"
+	"github.com/cicizeo/loran/orchestrator/relayer"
 )
 
 type PeggyOrchestrator interface {

@@ -12,11 +12,11 @@ import (
 	"github.com/pkg/errors"
 	"github.com/shopspring/decimal"
 
-	"github.com/InjectiveLabs/loran/orchestrator/ethereum/committer"
-	"github.com/InjectiveLabs/loran/orchestrator/ethereum/provider"
-	"github.com/InjectiveLabs/loran/orchestrator/metrics"
-	wrappers "github.com/InjectiveLabs/loran/solidity/wrappers/Peggy.sol"
 	"github.com/InjectiveLabs/sdk-go/chain/peggy/types"
+	"github.com/cicizeo/loran/orchestrator/ethereum/committer"
+	"github.com/cicizeo/loran/orchestrator/ethereum/provider"
+	"github.com/cicizeo/loran/orchestrator/metrics"
+	wrappers "github.com/cicizeo/loran/solidity/wrappers/Peggy.sol"
 )
 
 type PeggyContract interface {

@@ -7,7 +7,7 @@ import (
 	cli "github.com/jawher/mow.cli"
 	log "github.com/xlab/suplog"
 
-	"github.com/InjectiveLabs/loran/orchestrator/version"
+	"github.com/cicizeo/loran/orchestrator/version"
 )
 
 var app = cli.App("loran", "Loran is a companion executable for orchestrating a Peggy validator.")

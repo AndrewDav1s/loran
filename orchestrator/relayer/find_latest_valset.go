@@ -8,12 +8,12 @@ import (
 	"github.com/pkg/errors"
 	log "github.com/xlab/suplog"
 
-	"github.com/InjectiveLabs/loran/orchestrator/metrics"
-	"github.com/InjectiveLabs/loran/orchestrator/ethereum/util"
 	"github.com/InjectiveLabs/sdk-go/chain/peggy/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/cicizeo/loran/orchestrator/ethereum/util"
+	"github.com/cicizeo/loran/orchestrator/metrics"
 
-	wrappers "github.com/InjectiveLabs/loran/solidity/wrappers/Peggy.sol"
+	wrappers "github.com/cicizeo/loran/solidity/wrappers/Peggy.sol"
 )
 
 const defaultBlocksToSearch = 2000

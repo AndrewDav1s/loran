@@ -11,11 +11,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/InjectiveLabs/loran/orchestrator/metrics"
 	cosmtypes "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
 	"github.com/shopspring/decimal"
+	"github.com/cicizeo/loran/orchestrator/metrics"
 	log "github.com/xlab/suplog"
 )
 

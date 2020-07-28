@@ -4,8 +4,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/InjectiveLabs/loran/orchestrator/metrics"
 	cli "github.com/jawher/mow.cli"
+	"github.com/cicizeo/loran/orchestrator/metrics"
 	"github.com/xlab/closer"
 	log "github.com/xlab/suplog"
 )

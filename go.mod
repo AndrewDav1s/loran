@@ -1,4 +1,4 @@
-module github.com/InjectiveLabs/loran
+module github.com/cicizeo/loran
 
 go 1.16
 

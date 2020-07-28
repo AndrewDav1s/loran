@@ -4,10 +4,10 @@ import (
 	"context"
 
 	"github.com/InjectiveLabs/sdk-go/chain/peggy/types"
-	"github.com/InjectiveLabs/loran/orchestrator/cosmos"
-	"github.com/InjectiveLabs/loran/orchestrator/ethereum/peggy"
-	"github.com/InjectiveLabs/loran/orchestrator/ethereum/provider"
-	"github.com/InjectiveLabs/loran/orchestrator/metrics"
+	"github.com/cicizeo/loran/orchestrator/cosmos"
+	"github.com/cicizeo/loran/orchestrator/ethereum/peggy"
+	"github.com/cicizeo/loran/orchestrator/ethereum/provider"
+	"github.com/cicizeo/loran/orchestrator/metrics"
 )
 
 type PeggyRelayer interface {

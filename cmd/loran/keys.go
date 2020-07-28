@@ -30,7 +30,7 @@ import (
 	"github.com/InjectiveLabs/sdk-go/chain/crypto/ethsecp256k1"
 	"github.com/InjectiveLabs/sdk-go/chain/crypto/hd"
 
-	"github.com/InjectiveLabs/loran/orchestrator/ethereum/keystore"
+	"github.com/cicizeo/loran/orchestrator/ethereum/keystore"
 )
 
 const defaultKeyringKeyName = "validator"
