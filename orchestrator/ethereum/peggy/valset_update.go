@@ -6,10 +6,9 @@ import (
 
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
-	log "github.com/xlab/suplog"
-
-	"github.com/InjectiveLabs/sdk-go/chain/peggy/types"
 	"github.com/cicizeo/loran/orchestrator/metrics"
+	"github.com/cicizeo/hilo/x/peggy/types"
+	log "github.com/xlab/suplog"
 )
 
 type ValsetArgs struct {

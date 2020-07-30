@@ -30,7 +30,7 @@ func init() {
 		os.Setenv("LORAN_TEST_COVERAGE_MODE", "set")
 	}
 	if _, ok := os.LookupEnv("LORAN_TEST_BECH32_PREFIX"); !ok {
-		os.Setenv("LORAN_TEST_BECH32_PREFIX", "inj")
+		os.Setenv("LORAN_TEST_BECH32_PREFIX", "hilo")
 	}
 	if _, ok := os.LookupEnv("LORAN_TEST_BIP44_COIN"); !ok {
 		os.Setenv("LORAN_TEST_BIP44_COIN", "60")

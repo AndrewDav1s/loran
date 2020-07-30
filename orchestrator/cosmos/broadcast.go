@@ -5,19 +5,16 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/InjectiveLabs/sdk-go/chain/client"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	ethcmn "github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
-	log "github.com/xlab/suplog"
-
-	"github.com/InjectiveLabs/sdk-go/chain/client"
-	"github.com/InjectiveLabs/sdk-go/chain/peggy/types"
-
 	"github.com/cicizeo/loran/orchestrator/ethereum/keystore"
 	"github.com/cicizeo/loran/orchestrator/ethereum/peggy"
 	"github.com/cicizeo/loran/orchestrator/metrics"
-
 	wrappers "github.com/cicizeo/loran/solidity/wrappers/Peggy.sol"
+	"github.com/cicizeo/hilo/x/peggy/types"
+	log "github.com/xlab/suplog"
 )
 
 type PeggyBroadcastClient interface {

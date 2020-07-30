@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 description: InjectiveLabs Loran
-repository: https://github.com/cicizeo/loran
+repository: https://github.com/InjectiveLabs/loran
 schema:
   file: ./schema.graphql
 dataSources:

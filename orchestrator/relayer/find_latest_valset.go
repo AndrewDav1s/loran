@@ -4,16 +4,14 @@ import (
 	"context"
 	"sort"
 
+	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/pkg/errors"
-	log "github.com/xlab/suplog"
-
-	"github.com/InjectiveLabs/sdk-go/chain/peggy/types"
-	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cicizeo/loran/orchestrator/ethereum/util"
 	"github.com/cicizeo/loran/orchestrator/metrics"
-
 	wrappers "github.com/cicizeo/loran/solidity/wrappers/Peggy.sol"
+	"github.com/cicizeo/hilo/x/peggy/types"
+	log "github.com/xlab/suplog"
 )
 
 const defaultBlocksToSearch = 2000

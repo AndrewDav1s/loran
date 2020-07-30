@@ -3,11 +3,11 @@ package relayer
 import (
 	"context"
 
-	"github.com/InjectiveLabs/sdk-go/chain/peggy/types"
 	"github.com/cicizeo/loran/orchestrator/cosmos"
 	"github.com/cicizeo/loran/orchestrator/ethereum/peggy"
 	"github.com/cicizeo/loran/orchestrator/ethereum/provider"
 	"github.com/cicizeo/loran/orchestrator/metrics"
+	"github.com/cicizeo/hilo/x/peggy/types"
 )
 
 type PeggyRelayer interface {
