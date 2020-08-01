@@ -13,7 +13,6 @@ import (
 	"github.com/shopspring/decimal"
 	"github.com/cicizeo/loran/orchestrator/ethereum/committer"
 	"github.com/cicizeo/loran/orchestrator/ethereum/provider"
-	"github.com/cicizeo/loran/orchestrator/metrics"
 	wrappers "github.com/cicizeo/loran/solidity/wrappers/Peggy.sol"
 	"github.com/cicizeo/hilo/x/peggy/types"
 )
@@ -81,10 +80,6 @@ func NewPeggyContract(
 		EVMCommitter: ethCommitter,
 		peggyAddress: peggyAddress,
 		ethPeggy:     ethPeggy,
-
-		svcTags: metrics.Tags{
-			"svc": "peggy_contract",
-		},
 	}
 
 	return svc, nil
@@ -96,8 +91,6 @@ type peggyContract struct {
 	ethProvider  provider.EVMProvider
 	peggyAddress common.Address
 	ethPeggy     *wrappers.Peggy
-
-	svcTags metrics.Tags
 }
 
 func (s *peggyContract) Address() common.Address {
