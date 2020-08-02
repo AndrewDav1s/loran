@@ -7,8 +7,8 @@ require (
 	github.com/InjectiveLabs/etherman v1.7.0
 	github.com/InjectiveLabs/sdk-go v1.23.4
 	github.com/StackExchange/wmi v1.2.1 // indirect
-	github.com/alexcesaro/statsd v2.0.0+incompatible
 	github.com/avast/retry-go v3.0.0+incompatible
+	github.com/bugsnag/panicwrap v1.3.4 // indirect
 	github.com/cosmos/cosmos-sdk v0.44.3
 	github.com/dgraph-io/ristretto v0.1.0 // indirect
 	github.com/ethereum/go-ethereum v1.10.11
@@ -45,7 +45,6 @@ require (
 	golang.org/x/net v0.0.0-20210903162142-ad29c8ab022f // indirect
 	google.golang.org/genproto v0.0.0-20210903162649-d08c68adba83 // indirect
 	google.golang.org/grpc v1.41.0
-	gopkg.in/alexcesaro/statsd.v2 v2.0.0 // indirect
 )
 
 require (
@@ -60,7 +59,6 @@ require (
 	github.com/btcsuite/btcd v0.22.0-beta // indirect
 	github.com/btcsuite/btcutil v1.0.3-0.20201208143702-a53e38424cce // indirect
 	github.com/bugsnag/bugsnag-go v1.5.3 // indirect
-	github.com/bugsnag/panicwrap v1.3.1 // indirect
 	github.com/cespare/xxhash v1.1.0 // indirect
 	github.com/cespare/xxhash/v2 v2.1.1 // indirect
 	github.com/confio/ics23/go v0.6.6 // indirect

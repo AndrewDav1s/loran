@@ -12,7 +12,6 @@ import (
 	"github.com/cicizeo/loran/orchestrator/ethereum/keystore"
 	"github.com/cicizeo/loran/orchestrator/ethereum/peggy"
 	"github.com/cicizeo/loran/orchestrator/ethereum/provider"
-	"github.com/cicizeo/loran/orchestrator/metrics"
 	"github.com/cicizeo/loran/orchestrator/relayer"
 )
 
@@ -29,8 +28,6 @@ type PeggyOrchestrator interface {
 }
 
 type peggyOrchestrator struct {
-	svcTags metrics.Tags
-
 	tmClient             tmclient.TendermintClient
 	cosmosQueryClient    sidechain.PeggyQueryClient
 	peggyBroadcastClient sidechain.PeggyBroadcastClient
@@ -72,8 +69,5 @@ func NewPeggyOrchestrator(
 		relayer:              relayer,
 		minBatchFeeUSD:       minBatchFeeUSD,
 		priceFeeder:          priceFeeder,
-		svcTags: metrics.Tags{
-			"svc": "peggy_orchestrator",
-		},
 	}
 }
