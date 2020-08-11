@@ -5,11 +5,11 @@ import (
 	"os"
 	"time"
 
-	"github.com/InjectiveLabs/sdk-go/chain/client"
 	ethcmn "github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/rpc"
 	cli "github.com/jawher/mow.cli"
 	rpchttp "github.com/tendermint/tendermint/rpc/client/http"
+	"github.com/cicizeo/loran/cmd/loran/client"
 	"github.com/cicizeo/loran/orchestrator"
 	"github.com/cicizeo/loran/orchestrator/coingecko"
 	"github.com/cicizeo/loran/orchestrator/cosmos"
