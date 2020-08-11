@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/InjectiveLabs/sdk-go/chain/client"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	ethcmn "github.com/ethereum/go-ethereum/common"
 	"github.com/pkg/errors"
+	"github.com/cicizeo/loran/cmd/loran/client"
 	"github.com/cicizeo/loran/orchestrator/ethereum/keystore"
 	"github.com/cicizeo/loran/orchestrator/ethereum/peggy"
 	wrappers "github.com/cicizeo/loran/solidity/wrappers/Peggy.sol"

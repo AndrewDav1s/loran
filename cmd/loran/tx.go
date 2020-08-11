@@ -4,9 +4,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/InjectiveLabs/sdk-go/chain/client"
 	cli "github.com/jawher/mow.cli"
 	rpchttp "github.com/tendermint/tendermint/rpc/client/http"
+	"github.com/cicizeo/loran/cmd/loran/client"
 	"github.com/cicizeo/loran/orchestrator/cosmos"
 	"github.com/cicizeo/hilo/x/peggy/types"
 	"github.com/xlab/closer"
