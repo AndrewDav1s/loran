@@ -1,3 +1,4 @@
+// nolint: lll
 package loran
 
 import (
@@ -89,7 +90,7 @@ func parseServerConfig(cmd *cobra.Command) (*koanf.Koanf, error) {
 
 	// load from environment variables
 	if err := konfig.Load(env.Provider("LORAN_", ".", func(s string) string {
-		return strings.Replace(strings.ToLower(strings.TrimPrefix(s, "LORAN_")), "_", "-", -1)
+		return strings.ReplaceAll(strings.ToLower(strings.TrimPrefix(s, "LORAN_")), "_", "-")
 	}), nil); err != nil {
 		return nil, err
 	}
