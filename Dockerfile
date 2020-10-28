@@ -1,24 +1,27 @@
-#install packages for build layer
-FROM golang:1.15-alpine as builder
-RUN apk add --no-cache git gcc make perl jq libc-dev linux-headers
+ARG IMG_TAG=latest
 
-#build binary
-WORKDIR /src
-COPY . .
+# Compile the loran binary
+FROM golang:1.17-alpine AS loran-builder
+WORKDIR /src/app/
+COPY go.mod go.sum* ./
 RUN go mod download
-
-#install binary
+COPY . .
+ENV PACKAGES make git libc-dev bash gcc linux-headers
+RUN apk add --no-cache $PACKAGES
 RUN make install
 
-#build main container
-FROM alpine:latest
-RUN apk add --update --no-cache ca-certificates
-RUN apk add curl
-COPY --from=builder /go/bin/* /usr/local/bin/
+# Fetch hilod binary
+FROM golang:1.17-alpine AS hilod-builder
+ARG HILO_VERSION=v0.5.0-rc1
+ENV PACKAGES curl make git libc-dev bash gcc linux-headers eudev-dev
+RUN apk add --no-cache $PACKAGES
+WORKDIR /downloads/
+RUN git clone https://github.com/cicizeo/hilo.git
+RUN cd hilo && git checkout ${HILO_VERSION} && make build && cp ./build/hilod /usr/local/bin/
 
-#configure container
-VOLUME /apps/data
-WORKDIR /apps/data
-
-#default command
-CMD cd /root/.injectived/loran/ && loran orchestrator
+# Add to a distroless container
+FROM gcr.io/distroless/cc:$IMG_TAG
+ARG IMG_TAG
+COPY --from=loran-builder /go/bin/loran /usr/local/bin/
+COPY --from=hilod-builder /usr/local/bin/hilod /usr/local/bin/
+EXPOSE 26656 26657 1317 9090
