@@ -8,11 +8,11 @@ import (
 	ethcmn "github.com/ethereum/go-ethereum/common"
 	"github.com/rs/zerolog"
 	sidechain "github.com/cicizeo/loran/orchestrator/cosmos"
-	"github.com/cicizeo/loran/orchestrator/cosmos/tmclient"
 	"github.com/cicizeo/loran/orchestrator/ethereum/keystore"
 	"github.com/cicizeo/loran/orchestrator/ethereum/peggy"
 	"github.com/cicizeo/loran/orchestrator/ethereum/provider"
 	"github.com/cicizeo/loran/orchestrator/relayer"
+	peggytypes "github.com/cicizeo/hilo/x/peggy/types"
 )
 
 type PeggyOrchestrator interface {
@@ -27,8 +27,7 @@ type PeggyOrchestrator interface {
 
 type peggyOrchestrator struct {
 	logger                     zerolog.Logger
-	tmClient                   tmclient.TendermintClient
-	cosmosQueryClient          sidechain.PeggyQueryClient
+	cosmosQueryClient          peggytypes.QueryClient
 	peggyBroadcastClient       sidechain.PeggyBroadcastClient
 	peggyContract              peggy.Contract
 	ethProvider                provider.EVMProvider
@@ -47,9 +46,8 @@ type peggyOrchestrator struct {
 
 func NewPeggyOrchestrator(
 	logger zerolog.Logger,
-	cosmosQueryClient sidechain.PeggyQueryClient,
+	cosmosQueryClient peggytypes.QueryClient,
 	peggyBroadcastClient sidechain.PeggyBroadcastClient,
-	tmClient tmclient.TendermintClient,
 	peggyContract peggy.Contract,
 	ethFrom ethcmn.Address,
 	ethSignerFn keystore.SignerFn,
@@ -64,7 +62,6 @@ func NewPeggyOrchestrator(
 
 	orch := &peggyOrchestrator{
 		logger:                     logger.With().Str("module", "orchestrator").Logger(),
-		tmClient:                   tmClient,
 		cosmosQueryClient:          cosmosQueryClient,
 		peggyBroadcastClient:       peggyBroadcastClient,
 		peggyContract:              peggyContract,
