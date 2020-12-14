@@ -9,22 +9,22 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/stretchr/testify/assert"
 	"github.com/cicizeo/loran/mocks"
-	peggyMocks "github.com/cicizeo/loran/mocks/peggy"
+	gravityMocks "github.com/cicizeo/loran/mocks/gravity"
 	"github.com/cicizeo/loran/orchestrator/ethereum/provider"
 )
 
-func TestNewPeggyRelayer(t *testing.T) {
+func TestNewGravityRelayer(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
 	defer mockCtrl.Finish()
 
 	logger := zerolog.New(zerolog.ConsoleWriter{Out: os.Stderr})
 	mockQClient := mocks.NewMockQueryClient(mockCtrl)
-	mockPeggyContract := peggyMocks.NewMockContract(mockCtrl)
-	mockPeggyContract.EXPECT().Provider().Return(provider.NewEVMProvider(nil))
+	mockGravityContract := gravityMocks.NewMockContract(mockCtrl)
+	mockGravityContract.EXPECT().Provider().Return(provider.NewEVMProvider(nil))
 
-	relayer := NewPeggyRelayer(logger,
+	relayer := NewGravityRelayer(logger,
 		mockQClient,
-		mockPeggyContract,
+		mockGravityContract,
 		true,
 		true,
 		time.Minute,

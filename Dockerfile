@@ -12,7 +12,7 @@ RUN make install
 
 # Fetch hilod binary
 FROM golang:1.17-alpine AS hilod-builder
-ARG HILO_VERSION=v0.5.0-rc2
+ARG HILO_VERSION=bez/gb-module-poc
 ENV PACKAGES curl make git libc-dev bash gcc linux-headers eudev-dev
 RUN apk add --no-cache $PACKAGES
 WORKDIR /downloads/

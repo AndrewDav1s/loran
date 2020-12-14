@@ -10,7 +10,7 @@
 [![Lines Of Code](https://img.shields.io/tokei/lines/github/cicizeo/loran?style=flat-square)](https://github.com/cicizeo/loran)
 [![GitHub Super-Linter](https://img.shields.io/github/workflow/status/cicizeo/loran/Lint?style=flat-square&label=Lint)](https://github.com/marketplace/actions/super-linter)
 
-Loran is a Go implementation of the Peggy (Gravity Bridge) Orchestrator originally
+Loran is a Go implementation of the Gravity Bridge Orchestrator originally
 implemented by [Injective Labs](https://github.com/InjectiveLabs/). Loran itself
 is a fork of the original Gravity Bridge Orchestrator implemented by [Althea](https://github.com/althea-net).
 
@@ -43,7 +43,7 @@ sign claims going from Ethereum to Hilo and to sign any transactions sent to
 Ethereum (batches or validator set updates).
 
 ```shell
-$ hilod tx peggy set-orchestrator-address \
+$ hilod tx gravity set-orchestrator-address \
   {validatorAddress} \
   {validatorAddress} \
   {ethAddress} \
@@ -58,7 +58,7 @@ $ hilod tx peggy set-orchestrator-address \
 ### Run the orchestrator
 
 ```shell
-$ loran orchestrator \
+$ loran orchestrator {gravityAddress} \
   --eth-pk=$ETH_PK \
   --eth-rpc=$ETH_RPC \
   --relay-batches=true \
@@ -73,13 +73,13 @@ $ loran orchestrator \
 
 ### Send a transfer from Hilo to Ethereum
 
-This is done using the command `hilod tx peggy send-to-eth`, use the `--help`
+This is done using the command `hilod tx gravity send-to-eth`, use the `--help`
 flag for more information.
 
 If the coin doesn't have a corresponding ERC20 equivalent on the Ethereum
 network, the transaction will fail. This is only required for Cosmos originated
-coins and anyone can call the `deployERC20` function on the Peggy contract to
-fix this (Loran has a helper command for this, see
+coins and anyone can call the `deployERC20` function on the Gravity Bridge
+contract to fix this (Loran has a helper command for this, see
 `loran bridge deploy-erc20 --help` for more details).
 
 This process takes longer than transfers the other way around because they get
@@ -94,10 +94,10 @@ validator is configured to batch and relay transactions of this token.
 
 Any ERC20 token can be sent to Hilo and it's done using the command
 `loran bridge send-to-cosmos`, use the `--help` flag for more information. It
-can also be done by calling the `sendToCosmos` method on the Peggy contract.
+can also be done by calling the `sendToCosmos` method on the Gravity Bridge contract.
 
-The ERC20 tokens will be locked in the Peggy contract and new coins will be
-minted on Hilo with the denomination `peggy{token_address}`. This process takes
+The ERC20 tokens will be locked in the Gravity Bridge contract and new coins will be
+minted on Hilo with the denomination `gravity{token_address}`. This process takes
 around 3 minutes or 12 Ethereum blocks.
 
 ## How it works
@@ -106,7 +106,7 @@ Loran allows transfers of assets back and forth between Ethereum and Hilo.
 It supports both assets originating on Hilo and assets originating on Ethereum
 (any ERC20 token).
 
-It works by scanning the events of the contract deployed on Ethereum (Peggy) and
+It works by scanning the events of the contract deployed on Ethereum (Gravity) and
 relaying them as messages to the Hilo chain; and relaying transaction batches and
 validator sets from Hilo to Ethereum.
 
@@ -115,24 +115,24 @@ validator sets from Hilo to Ethereum.
 #### Ethereum
 
 **Deposits** (`SendToCosmosEvent`): emitted when sending tokens from Ethereum to
-Hilo using the `sendToCosmos` function on Peggy.
+Hilo using the `sendToCosmos` function on Gravity.
 
 **Withdraw** (`TransactionBatchExecutedEvent`): emitted when a batch of
 transactions is sent from Hilo to Ethereum using the `submitBatch` function on
-the Peggy contract by a validator. This serves as a confirmation to Hilo that
+the Gravity Bridge contract by a validator. This serves as a confirmation to Hilo that
 the batch was sent successfully.
 
-**Valset update** (`ValsetUpdatedEvent`): emitted on init of the Peggy contract
+**Valset update** (`ValsetUpdatedEvent`): emitted on init of the Gravity Bridge contract
 and on every execution of the `updateValset` function.
 
 **Deployed ERC 20** (`ERC20DeployedEvent`): emitted when executing the function
 `deployERC20`. This event signals Hilo that there's a new ERC20 deployed from
-Peggy, so Hilo can map the token contract address to the corresponding native
+Gravity, so Hilo can map the token contract address to the corresponding native
 coin. This enables transfers from Hilo to Ethereum.
 
 #### Hilo
 
- **Validator sets**: Hilo informs the Peggy contract who are the current
+ **Validator sets**: Hilo informs the Gravity Bridge contract who are the current
  validators and their power. This results in an execution of the `updateValset`
  function.
 
@@ -141,4 +141,4 @@ coin. This enables transfers from Hilo to Ethereum.
  will send a message to Hilo requesting a new batch.
 
  **Batches**: Loran queries Hilo for any batches ready to be relayed and relays
- them over to Ethereum using the `submitBatch` function on the Peggy contract.
+ them over to Ethereum using the `submitBatch` function on the Gravity Bridge contract.

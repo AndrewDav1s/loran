@@ -17,8 +17,8 @@ import (
 func NewRootCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "loran",
-		Short: "Loran is a companion executable for orchestrating a Peggy validator",
-		Long: `Loran is a companion executable for orchestrating a Peggy validator.
+		Short: "Loran is a companion executable for orchestrating a Gravity validator",
+		Long: `Loran is a companion executable for orchestrating a Gravity validator.
 
 Inputs in the CLI commands can be provided via flags or environment variables. If
 using the later, prefix the environment variable with LORAN_ and the named of the
