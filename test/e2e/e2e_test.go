@@ -15,7 +15,7 @@ func (s *IntegrationTestSuite) TestPhotonTokenTransfers() {
 
 	// send 100 photon tokens from Hilo to Ethereum
 	s.Run("send_photon_tokens_to_eth", func() {
-		ethRecipient := s.chain.validators[1].ethereumKey.address
+		ethRecipient := s.chain.orchestrators[1].ethereumKey.address
 		s.sendFromHiloToEth(0, ethRecipient, "100photon", "10photon", "3photon")
 
 		hiloEndpoint := fmt.Sprintf("http://%s", s.valResources[0].GetHostPort("1317/tcp"))
@@ -87,7 +87,7 @@ func (s *IntegrationTestSuite) TestHiloTokenTransfers() {
 
 	// send 300 hilo tokens from Hilo to Ethereum
 	s.Run("send_uhilo_tokens_to_eth", func() {
-		ethRecipient := s.chain.validators[1].ethereumKey.address
+		ethRecipient := s.chain.orchestrators[1].ethereumKey.address
 		s.sendFromHiloToEth(0, ethRecipient, "300uhilo", "10photon", "7uhilo")
 
 		endpoint := fmt.Sprintf("http://%s", s.valResources[0].GetHostPort("1317/tcp"))

@@ -40,7 +40,7 @@ func (s *IntegrationTestSuite) deployERC20Token(baseDenom string) string {
 			s.gravityContractAddr,
 			baseDenom,
 			"--eth-pk",
-			ethMinerPK[2:], // remove 0x prefix
+			ethMinerPK,
 			"--eth-rpc",
 			fmt.Sprintf("http://%s:8545", s.ethResource.Container.Name[1:]),
 			"--cosmos-chain-id",
@@ -139,8 +139,8 @@ func (s *IntegrationTestSuite) registerOrchAddresses(valIdx int, hiloFee string)
 			"gravity",
 			"set-orchestrator-address",
 			valAddr.String(),
-			valAddr.String(),
-			s.chain.validators[valIdx].ethereumKey.address,
+			s.chain.orchestrators[valIdx].keyInfo.GetAddress().String(),
+			s.chain.orchestrators[valIdx].ethereumKey.address,
 			fmt.Sprintf("--%s=%s", flags.FlagChainID, s.chain.id),
 			fmt.Sprintf("--%s=%s", flags.FlagFees, hiloFee),
 			"--keyring-backend=test",
@@ -249,7 +249,7 @@ func (s *IntegrationTestSuite) sendFromEthToHilo(valIdx int, tokenAddr, toHiloAd
 
 	s.T().Logf(
 		"sending tokens from Ethereum to Hilo; from: %s, to: %s, amount: %s, contract: %s",
-		s.chain.validators[valIdx].ethereumKey.address, toHiloAddr, amount, tokenAddr,
+		s.chain.orchestrators[valIdx].ethereumKey.address, toHiloAddr, amount, tokenAddr,
 	)
 
 	exec, err := s.dkrPool.Client.CreateExec(docker.CreateExecOptions{
@@ -267,7 +267,7 @@ func (s *IntegrationTestSuite) sendFromEthToHilo(valIdx int, tokenAddr, toHiloAd
 			toHiloAddr,
 			amount,
 			"--eth-pk",
-			s.chain.validators[valIdx].ethereumKey.privateKey[2:], // remove 0x prefix
+			s.chain.orchestrators[valIdx].ethereumKey.privateKey,
 			"--eth-rpc",
 			fmt.Sprintf("http://%s:8545", s.ethResource.Container.Name[1:]),
 			"--cosmos-chain-id",
