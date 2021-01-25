@@ -4,9 +4,7 @@
 
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://img.shields.io/badge/repo%20status-WIP-yellow.svg?style=flat-square)](https://www.repostatus.org/#wip)
 [![GoDoc](https://img.shields.io/badge/godoc-reference-blue?style=flat-square&logo=go)](https://godoc.org/github.com/cicizeo/loran)
-[![Go Report Card](https://goreportcard.com/badge/github.com/cicizeo/loran?style=flat-square)](https://goreportcard.com/report/github.com/cicizeo/loran)
-[![Version](https://img.shields.io/github/tag/cicizeo/loran.svg?style=flat-square)](https://github.com/cicizeo/loran/releases/latest)
-[![License: Apache-2.0](https://img.shields.io/github/license/cicizeo/loran.svg?style=flat-square)](https://github.com/cicizeo/loran/blob/main/LICENSE)
+[![License: Apache-2.0](https://img.shields.io/github/license/cicizeo/loran.svg?style=flat-square)](https://github.com/cicizeo/loran/blob/master/LICENSE)
 [![Lines Of Code](https://img.shields.io/tokei/lines/github/cicizeo/loran?style=flat-square)](https://github.com/cicizeo/loran)
 [![GitHub Super-Linter](https://img.shields.io/github/workflow/status/cicizeo/loran/Lint?style=flat-square&label=Lint)](https://github.com/marketplace/actions/super-linter)
 
